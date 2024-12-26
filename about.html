@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Club - About Us</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header id="main-header">
+      <div class="logo">
+        <a href="/">
+          <img
+            src="images/ResearchClubLogo-removebg.png"
+            alt="Research Club Logo"
+          />
+        </a>
+      </div>
+      <nav>
+        <div class="menu-container">
+          <ul id="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/resources.html">Resources</a></li>
+            <li><a href="/partners.html">Partners</a></li>
+            <li><a href="/about.html" class="active">About</a></li>
+          </ul>
+          <button id="menu-toggle">
+            <img src="images/Hamburger_icon.png" alt="Menu" />
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="content-wrapper">
+      <!-- Advisors Section with Carousel -->
+      <section class="advisors-section">
+        <div class="advisors-content">
+          <div class="text-content">
+            <h2>Our Advisors</h2>
+            <div class="advisor-info">
+              <h3>Dr. Sarah Mitchell</h3>
+              <p class="advisor-title">Science Department Chair</p>
+              <p class="advisor-bio">
+                Leading our research initiatives with over 15 years of
+                experience in scientific research and education. Specializes in
+                molecular biology and student research mentorship.
+              </p>
+            </div>
+          </div>
+
+          <div class="advisor-showcase">
+            <button
+              class="showcase-nav prev-btn"
+              aria-label="Previous advisor"
+            ></button>
+            <div class="showcase-slider">
+              <div class="showcase-slide prev">
+                <img src="images/BlueFiller.jpg" alt="Previous Advisor" />
+              </div>
+              <div class="showcase-slide current">
+                <img
+                  src="images/ProfessionalFiller.jpg"
+                  alt="Current Advisor"
+                />
+              </div>
+              <div class="showcase-slide next">
+                <img src="images/ShapesFiller.jpeg" alt="Next Advisor" />
+              </div>
+            </div>
+            <button
+              class="showcase-nav next-btn"
+              aria-label="Next advisor"
+            ></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Board Members Section -->
+      <section class="board-section">
+        <div class="board-content">
+          <div class="board-image">
+            <img
+              src="images/ProfessionalFiller.jpg"
+              alt="Research Club Board Members"
+            />
+            <div class="image-overlay">
+              <span>Research Club Board 2023-2024</span>
+            </div>
+          </div>
+          <div class="text-content">
+            <h2>Meet Our Board</h2>
+            <p>
+              Our student board members are the driving force behind the
+              Research Club's success. Each brings unique perspectives and
+              skills, working together to create opportunities for scientific
+              exploration and academic growth.
+            </p>
+            <div class="board-stats">
+              <div class="stat">
+                <span class="number" data-value="12">0</span>
+                <span class="label">Board Members</span>
+              </div>
+              <div class="stat">
+                <span class="number" data-value="4">0</span>
+                <span class="label">Departments</span>
+              </div>
+              <div class="stat">
+                <span class="number" data-value="50" data-suffix="+">0</span>
+                <span class="label">Projects Led</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Calendar Section -->
+      <section class="calendar-section">
+        <div class="calendar-container">
+          <h2>Club Calendar</h2>
+          <div id="custom-calendar"></div>
+        </div>
+      </section>
+
+      <!-- Mission & Vision Section -->
+      <section class="mission-section">
+        <div class="mission-content">
+          <div class="mission-grid">
+            <div class="mission-card">
+              <h3>Our Mission</h3>
+              <p>
+                To foster a community of young researchers, providing them with
+                the tools, mentorship, and opportunities to explore their
+                scientific curiosity and develop valuable research skills.
+              </p>
+            </div>
+            <div class="mission-card">
+              <h3>Our Vision</h3>
+              <p>
+                To become a leading platform for student researchers, where
+                innovative ideas flourish and future scientists emerge,
+                contributing to the advancement of scientific knowledge.
+              </p>
+            </div>
+            <div class="mission-card">
+              <h3>Our Goals</h3>
+              <ul>
+                <li>Facilitate student-led research projects</li>
+                <li>Connect students with research opportunities</li>
+                <li>Develop critical thinking and analytical skills</li>
+                <li>Build partnerships with academic institutions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="decorative-element">
+            <!-- Abstract geometric shapes or science-themed SVG animation -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/calendar-api.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const calendarContainer = document.getElementById("custom-calendar");
+        if (calendarContainer) {
+          new Calendar(calendarContainer);
+        }
+      });
+    </script>
+  </body>
+</html>

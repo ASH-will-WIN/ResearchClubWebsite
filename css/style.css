@@ -1,0 +1,1625 @@
+/*******************************
+ * Table of Contents
+ * 1. General Styles
+ * 2. Header & Navigation
+ * 3. Content Layout
+ * 4. Resource Grid
+ * 5. Media Center
+ * 6. Document Showcase
+ * 7. Slideshow
+ * 8. Calendar
+ * 9. Responsive Design
+ *******************************/
+
+/*******************************
+ * 1. General Styles
+ *******************************/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/*******************************
+ * 2. Header & Navigation
+ *******************************/
+/* Main Header - Fixed navigation bar at the top */
+#main-header {
+  position: fixed; /* Keeps header at top of screen while scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensures header stays above other content */
+  transition: all 0.3s ease-in-out; /* Smooth animation for size changes */
+  padding: 8px 20px;
+  display: flex; /* Uses flexbox for logo and nav alignment */
+  justify-content: space-between; /* Puts space between logo and nav */
+  align-items: center; /* Vertically centers items */
+  gap: 20px;
+}
+
+/* Header appearance when scrolled */
+#main-header.shrink {
+  padding: 5px 20px; /* Reduces padding to make header smaller */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Blurs content behind the header */
+}
+
+/* Logo container styling */
+.logo a {
+  display: block;
+  text-decoration: none; /* Removes underline from link */
+}
+
+/* Logo image styling */
+.logo img {
+  height: 60px;
+  transition: height 0.3s ease-in-out; /* Smooth size transition */
+}
+
+/* Logo size when header shrinks */
+#main-header.shrink .logo img {
+  height: 40px; /* Smaller logo when scrolled */
+}
+
+/* Navigation menu container */
+nav {
+  display: flex;
+  align-items: center;
+  margin-right: 40px; /* Space from right edge of screen */
+}
+
+/* Container for menu items and button */
+.menu-container {
+  display: flex;
+  align-items: center;
+  position: relative; /* For absolute positioning of menu items */
+}
+
+/* Navigation links list */
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease; /* Smooth animation for menu opening/closing */
+  position: absolute; /* Positioned relative to menu-container */
+  right: 100%; /* Initially positioned off-screen */
+  top: 50%;
+  transform: translateY(-50%); /* Centers menu vertically */
+  opacity: 0; /* Initially invisible */
+  pointer-events: none; /* Initially unclickable */
+}
+
+/* Navigation list when menu is active */
+nav ul.active {
+  opacity: 1; /* Makes menu visible */
+  pointer-events: all; /* Makes links clickable */
+  right: calc(100% + 50px); /* Positions menu to the left of button */
+}
+
+nav ul li {
+  margin: 0 8px;
+}
+
+/* Navigation Links */
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f2f2f2;
+  border-color: #ffffff;
+  border-radius: 8px;
+  font-weight: 450;
+}
+
+nav ul li a.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 8px;
+}
+
+/* Mobile Menu Button */
+#menu-toggle {
+  background-color: transparent;
+  color: #000000;
+  border: none;
+  padding: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+#menu-toggle img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+  transition: transform 0.3s ease;
+}
+
+#menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#menu-toggle.active img {
+  transform: rotate(90deg);
+}
+
+/*******************************
+ * 3. Content Layout
+ *******************************/
+/* Content Wrapper */
+.content-wrapper {
+  padding-top: 100px;
+  color: #ffffff;
+  min-height: 100vh;
+  transition: padding-top 0.3s ease-in-out;
+}
+
+#main-header.shrink ~ .content-wrapper {
+  padding-top: 80px;
+}
+
+/* Section Styling */
+section {
+  border-bottom: 1px transparent #333;
+  padding: 40px 0;
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #ffffff;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #007bff;
+  margin: 15px auto 0;
+}
+
+/* Image and Text Section */
+.image-text-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 60px 80px;
+  background-color: #1a1a1a;
+}
+
+.image-text-section .image-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.image-text-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.image-text-section .text-content {
+  flex: 1;
+}
+
+.image-text-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.image-text-section p {
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+/* Add responsive styles for image-text-section */
+@media (max-width: 768px) {
+  .image-text-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .image-text-section .image-container {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+/*******************************
+ * 4. Resource Grid
+ *******************************/
+/* Container for resource grid section */
+.resource-grid-section {
+  padding: 20px 40px;
+}
+
+/* Grid layout for resource cards */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+  gap: 20px; /* Space between cards */
+  padding: 40px;
+  max-width: 1400px; /* Limits width on large screens */
+  margin: 0 auto; /* Centers grid */
+}
+
+/* Resource card container - Enables 3D flip effect */
+.resource-card {
+  position: relative;
+  height: 200px;
+  perspective: 1000px; /* Creates 3D space for flip animation */
+  cursor: pointer;
+}
+
+/* Inner card container that flips */
+.resource-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d; /* Enables 3D flip */
+}
+
+/* Trigger flip animation on hover */
+.resource-card:hover .resource-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Common styles for front and back of card */
+.resource-front,
+.resource-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hides back of card when flipped */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Front card image styling */
+.resource-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers card */
+}
+
+/* Back of card styling */
+.resource-back {
+  background: rgba(26, 26, 26, 0.95); /* Semi-transparent dark background */
+  transform: rotateY(180deg); /* Initially flipped */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Resource title on back of card */
+.resource-back h3 {
+  margin: 0;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Resource description on back of card */
+.resource-back p {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+
+/* Link styling on back of card */
+.resource-back .open-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  align-self: flex-end; /* Positions link at bottom right */
+}
+
+/*******************************
+ * 5. Media Center
+ *******************************/
+/* Media center section container */
+.media-center {
+  background: linear-gradient(
+    45deg,
+    #1a1a1a,
+    #2a2a2a
+  ); /* Gradient background */
+  padding: 40px;
+  text-align: center;
+  margin: 40px auto;
+  border-radius: 12px;
+  max-width: 800px; /* Limits width for readability */
+}
+
+/* Media center heading */
+.media-center h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Media center link styling */
+.media-center a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+/* Link hover effect */
+.media-center a:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+
+/*******************************
+ * 6. Document Showcase
+ *******************************/
+/* Document showcase container */
+.document-showcase {
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  gap: 20px; /* Reduced gap since button will be between */
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Slider container for document previews */
+.showcase-slider {
+  position: relative;
+  width: 60%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual slide styling */
+.showcase-slide {
+  position: absolute;
+  width: 250px; /* Base width */
+  height: 350px; /* Base height */
+  transition: all 0.5s ease;
+  cursor: pointer;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Document preview image styling */
+.showcase-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: all 0.5s ease;
+}
+
+/* Previous slide positioning */
+.showcase-slide.prev {
+  transform: translateX(-100%) scale(0.8);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Current slide positioning */
+.showcase-slide.current {
+  transform: translateX(0) scale(1.2);
+  opacity: 1;
+  z-index: 2;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Next slide positioning */
+.showcase-slide.next {
+  transform: translateX(100%) scale(0.8);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Navigation buttons - shared between document and advisor showcase */
+.showcase-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.showcase-nav:hover {
+  background: none;
+}
+
+/* Arrow icons for navigation buttons */
+.showcase-nav::before {
+  content: "";
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 6px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+/* Arrow hover effect */
+.showcase-nav:hover::before {
+  opacity: 1;
+}
+
+/* Previous button stays on the left of slider */
+.showcase-nav.prev-btn {
+  left: 0;
+}
+
+/* Next button positioned on the right side of the carousel */
+.showcase-nav.next-btn {
+  right: 0;
+}
+
+/* Arrow directions */
+.showcase-nav.prev-btn::before {
+  transform: rotate(135deg);
+}
+
+.showcase-nav.next-btn::before {
+  transform: rotate(-45deg);
+}
+
+/* Document description container - adjusted for new button position */
+.showcase-content {
+  width: 35%;
+  margin-left: 60px;
+}
+
+/* Document title styling */
+.showcase-content h2 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Document description text */
+.showcase-content p {
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+/*******************************
+ * 7. Slideshow
+ *******************************/
+/* Main slideshow container */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+  background: none;
+}
+
+/* Slides container */
+.slides {
+  height: 100%;
+}
+
+/* Individual slide styling */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Initially hidden */
+  transition: all 0.5s ease-in-out;
+  object-fit: cover;
+  transform-origin: center center;
+  transform: scale(1);
+  border-radius: 0;
+}
+
+/* Active slide styling */
+.slide.active {
+  opacity: 1; /* Visible */
+}
+
+/* Expanded slideshow state */
+.slideshow.expanded {
+  height: 700px; /* Taller when header shrinks */
+}
+
+/* Active slide in expanded state */
+.slideshow.expanded .slide.active {
+  transform: scale(1.05); /* Slightly larger */
+}
+
+/*******************************
+ * 8. Calendar
+ *******************************/
+/* Homepage Calendar Events Section */
+.calendar {
+  padding: 80px 40px;
+  background-color: #1a1a1a;
+}
+
+.calendar h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 50px;
+  color: #ffffff;
+}
+
+.calendar-events {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.event {
+  background: linear-gradient(145deg, #242424, #1a1a1a);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #00e5ff);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.event:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.event:hover::before {
+  transform: scaleX(1);
+}
+
+.event .date {
+  background: linear-gradient(145deg, #1a1a1a, #242424);
+  color: #007bff;
+  padding: 20px;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.event-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.event strong {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.event .description {
+  color: #a0a0a0;
+  font-size: 1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Responsive design for calendar events */
+@media (max-width: 1024px) {
+  .calendar-events {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-events {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar {
+    padding: 60px 20px;
+  }
+}
+
+/*******************************
+ * 9. Responsive Design
+ *******************************/
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .resource-grid {
+    grid-template-columns: repeat(3, 1fr); /* Reduce to 3 columns */
+  }
+}
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
+  /* Navigation adjustments for mobile */
+  nav ul {
+    flex-direction: column;
+    background-color: #000000;
+    padding: 10px;
+    border-radius: 8px;
+    top: 100%;
+    right: 0;
+    transform: translateY(10px);
+  }
+
+  nav ul.active {
+    right: 0;
+  }
+
+  nav ul li {
+    margin: 5px 0;
+  }
+
+  /* Resource grid adjustments */
+  .resource-grid {
+    grid-template-columns: repeat(2, 1fr); /* Reduce to 2 columns */
+  }
+
+  /* Document showcase mobile layout */
+  .document-showcase {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .showcase-slider,
+  .showcase-content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  /* Adjust button positions for mobile */
+  .showcase-nav.next-btn {
+    left: auto;
+    right: 0;
+    padding-right: 20px;
+  }
+
+  /* Calendar mobile layout */
+  .calendar-events {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar-events .event {
+    width: 90%;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .resource-grid {
+    grid-template-columns: 1fr; /* Single column */
+  }
+}
+
+/* Partnership Packet Section */
+.packet-section {
+  padding: 60px 40px;
+  background-color: #1f1f1f;
+}
+
+.packet-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row; /* Ensure horizontal layout */
+  align-items: flex-start; /* Align items to top */
+  justify-content: space-between; /* Space between text and image */
+  gap: 60px;
+}
+
+/* Text content on the left */
+.packet-content .text-content {
+  flex: 0 1 55%; /* Take up 55% of space but allow shrinking */
+  order: 1; /* Ensure text comes first */
+}
+
+/* Image container on the right */
+.packet-content .packet-image {
+  flex: 0 1 45%;
+  order: 2;
+  text-align: center; /* Center the image and caption */
+}
+
+.download-packet {
+  position: relative;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  margin-bottom: 15px; /* Space between image and caption */
+}
+
+.download-packet img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Caption styling */
+.packet-caption {
+  color: #007bff; /* Matches the blue accent color used elsewhere */
+  font-size: 0.9rem;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover effects */
+.download-packet:hover {
+  transform: translateY(-5px);
+}
+
+.download-packet:hover + .packet-caption {
+  opacity: 1;
+}
+
+/* Download overlay */
+.download-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.download-packet:hover .download-overlay {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .packet-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .packet-content .text-content,
+  .packet-content .packet-image {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* Partner Page Hero Styles */
+.partner-hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.partner-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.partner-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.3) blur(3px); /* Slightly darker and blurred for modern look */
+  transform: scale(1.1); /* Slight scale to prevent blur edges showing */
+}
+
+.partner-hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 20px;
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.3s; /* Smooth entrance animation */
+}
+
+.partner-hero-content h1 {
+  font-size: 4rem; /* Larger, more impactful title */
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 300; /* Lighter weight for modern feel */
+  letter-spacing: 2px;
+}
+
+.partner-hero-content p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+}
+
+/* Content that slides over hero */
+.partner-content {
+  position: relative;
+  z-index: 2;
+  background-color: #121212;
+  margin-top: 100vh;
+  box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 30px 30px 0 0; /* Rounded top corners */
+  overflow: hidden;
+}
+
+/* Current Partners Section */
+.current-partners {
+  background-color: #121212;
+  padding: 100px 40px; /* More padding for breathing room */
+  min-height: 50vh;
+}
+
+.current-partners h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 60px;
+  letter-spacing: 1px;
+}
+
+/* Entrance animation for hero content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Partnership Information Section */
+.partnership-info {
+  padding: 80px 40px;
+  background-color: #1a1a1a;
+}
+
+.partnership-info .text-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.partnership-info h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.partnership-info h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin: 40px 0 20px;
+  letter-spacing: 1px;
+}
+
+.partnership-info ul li {
+  margin: 15px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #e0e0e0;
+}
+
+.partnership-info ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+}
+
+/* Packet Section Enhancements */
+.packet-section {
+  padding: 100px 40px;
+  background-color: #1f1f1f;
+}
+
+.packet-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 80px; /* Increased spacing */
+}
+
+.packet-content h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .partner-hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .partner-content {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .packet-content {
+    gap: 40px;
+  }
+}
+
+/* Ensure main content area has proper stacking context */
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* Advisors Section */
+.advisors-section {
+  padding: 80px 40px;
+  background-color: #121212;
+}
+
+.advisors-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.advisors-content .text-content {
+  flex: 0 1 40%;
+}
+
+.advisors-content h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.advisor-info {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.advisor-info h3 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.advisor-title {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.advisor-bio {
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+/* Advisor Showcase */
+.advisor-showcase {
+  position: relative;
+  flex: 0 1 60%;
+}
+
+.advisor-showcase .showcase-slider {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.advisor-showcase .showcase-slide {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.advisor-showcase .showcase-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.advisor-showcase .showcase-slide.prev {
+  transform: translateX(-50%) scale(0.8);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.advisor-showcase .showcase-slide.current {
+  transform: translateX(0) scale(1.1);
+  opacity: 1;
+  z-index: 2;
+}
+
+.advisor-showcase .showcase-slide.next {
+  transform: translateX(50%) scale(0.8);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Smooth transitions for advisor info */
+.advisor-info {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Ensure proper spacing in board section */
+.board-content {
+  padding: 40px 0;
+}
+
+/* Add some breathing room to mission cards */
+.mission-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.mission-card ul {
+  margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .advisor-showcase .showcase-slide {
+    width: 250px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .advisor-showcase {
+    height: 400px;
+  }
+
+  .advisor-showcase .showcase-slide {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+/* Board Section */
+.board-section {
+  padding: 100px 40px;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+.board-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.board-image {
+  flex: 0 1 55%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: perspective(1000px) rotateY(5deg);
+  transition: transform 0.5s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.board-image:hover {
+  transform: perspective(1000px) rotateY(0);
+}
+
+.board-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.board-image:hover img {
+  filter: brightness(1);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.board-image:hover .image-overlay {
+  transform: translateY(0);
+}
+
+.board-content .text-content {
+  flex: 0 1 45%;
+}
+
+.board-content h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* Board Stats */
+.board-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.stat {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.stat .number {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #007bff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+.stat .label {
+  color: #888;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+/* Add stagger delay to stats */
+.stat:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.stat:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.stat:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mission Section */
+.mission-section {
+  padding: 100px 40px;
+  background-color: #121212;
+  position: relative;
+}
+
+.mission-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-card {
+  background: linear-gradient(145deg, #1a1a1a, #242424);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #00e5ff);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.mission-card:hover::before {
+  transform: scaleX(1);
+}
+
+.mission-card h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.mission-card p {
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+.mission-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mission-card ul li {
+  margin: 15px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #e0e0e0;
+}
+
+.mission-card ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+}
+
+/* Decorative Element */
+.decorative-element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.1;
+  background: radial-gradient(circle at 70% 30%, #007bff 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .advisors-content,
+  .board-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .advisor-showcase,
+  .board-image,
+  .board-content .text-content {
+    flex: 0 1 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .board-stats {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+}
+
+/* Calendar Section Styles */
+.calendar-section {
+  padding: 80px 40px;
+  background-color: #1a1a1a;
+}
+
+.calendar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calendar-container h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+#calendar-embed {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Homepage Calendar Events */
+.calendar-events {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.event {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.event:hover {
+  transform: translateY(-5px);
+}
+
+.event strong {
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+/* Custom Calendar Styles */
+.custom-calendar {
+  background: linear-gradient(145deg, #242424, #1a1a1a);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.calendar-header h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0;
+  color: #ffffff;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.calendar-header button:hover {
+  background: rgba(0, 123, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.weekdays div {
+  color: #007bff;
+  font-weight: 500;
+  padding: 10px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.day {
+  aspect-ratio: 1;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.day:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.day.empty {
+  background: none;
+  cursor: default;
+}
+
+.day-number {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+.has-events {
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.has-events::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #007bff;
+  border-radius: 50%;
+}
+
+.calendar-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #242424, #1a1a1a);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-event {
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.modal-close {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: #0056b3;
+}

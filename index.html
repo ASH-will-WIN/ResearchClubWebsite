@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Club</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header id="main-header">
+      <div class="logo">
+        <a href="/">
+          <img
+            src="images/ResearchClubLogo-removebg.png"
+            alt="Research Club Logo"
+          />
+        </a>
+      </div>
+      <nav>
+        <div class="menu-container">
+          <ul id="nav-links">
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/resources.html">Resources</a></li>
+            <li><a href="/partners.html">Partners</a></li>
+            <li><a href="/about.html">About</a></li>
+          </ul>
+          <button id="menu-toggle">
+            <img src="images/Hamburger_icon.png" alt="Menu" />
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Slideshow Section -->
+    <section class="slideshow">
+      <div class="slides">
+        <img src="images/BlueFiller.jpg" alt="Slide 1" class="slide active" />
+        <img src="images/ShapesFiller.jpeg" alt="Slide 2" class="slide" />
+        <img src="images/ProfessionalFiller.jpg" alt="Slide 3" class="slide" />
+        <img src="images/BlueFiller.jpg" alt="Slide 4" class="slide" />
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+      <!-- New Image and Text Section -->
+      <section class="image-text-section">
+        <div class="image-container">
+          <img src="images/ShapesFiller.jpeg" alt="Research Club Activity" />
+        </div>
+        <div class="text-content">
+          <h2>Welcome to Research Club</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </div>
+      </section>
+
+      <!-- Calendar Section -->
+      <section class="calendar">
+        <h2>Upcoming Events</h2>
+        <div class="calendar-events">
+          <!-- Events will be populated by JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <script src="js/calendar-api.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
