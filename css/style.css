@@ -270,13 +270,14 @@ section {
   padding: 40px;
   max-width: 1400px; /* Limits width on large screens */
   margin: 0 auto; /* Centers grid */
+  margin-bottom: 20px; /* Add space after each grid */
 }
 
 /* Resource card container - Enables 3D flip effect */
 .resource-card {
   position: relative;
-  height: 200px;
-  perspective: 1000px; /* Creates 3D space for flip animation */
+  height: 150px;
+  perspective: 1000px;
   cursor: pointer;
 }
 
@@ -300,23 +301,28 @@ section {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden; /* Hides back of card when flipped */
+  backface-visibility: hidden;
   border-radius: 12px;
   overflow: hidden;
+  display: flex; /* Added to center content */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
 }
 
 /* Front card image styling */
 .resource-front img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures image covers card */
+  object-fit: contain; /* Changed from 'cover' to 'contain' */
+  background-color: #242424; /* Dark background for logos */
+  padding: 10px; /* Add some padding around the images */
 }
 
 /* Back of card styling */
 .resource-back {
-  background: rgba(26, 26, 26, 0.95); /* Semi-transparent dark background */
-  transform: rotateY(180deg); /* Initially flipped */
-  padding: 20px;
+  background: rgba(26, 26, 26, 0.95);
+  transform: rotateY(180deg);
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -326,14 +332,15 @@ section {
 .resource-back h3 {
   margin: 0;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 /* Resource description on back of card */
 .resource-back p {
   color: #e0e0e0;
-  font-size: 0.9rem;
-  margin: 10px 0;
+  font-size: 0.85rem;
+  margin: 8px 0;
+  line-height: 1.4;
 }
 
 /* Link styling on back of card */
@@ -342,6 +349,11 @@ section {
   text-decoration: none;
   font-weight: bold;
   align-self: flex-end; /* Positions link at bottom right */
+}
+
+/* Remove the last grid's margin */
+.resource-grid:last-child {
+  margin-bottom: 0;
 }
 
 /*******************************
@@ -364,7 +376,7 @@ section {
 /* Media center heading */
 .media-center h2 {
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced from 20px */
 }
 
 /* Media center link styling */
@@ -373,11 +385,23 @@ section {
   text-decoration: none;
   font-size: 1.2rem;
   transition: color 0.3s ease;
+  margin-top: 10px;
+  display: inline-block;
 }
 
 /* Link hover effect */
 .media-center a:hover {
   color: #0056b3; /* Darker blue on hover */
+}
+
+/* Media center description styling */
+.media-description {
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 0 20px;
 }
 
 /*******************************
@@ -571,94 +595,86 @@ section {
  *******************************/
 /* Homepage Calendar Events Section */
 .calendar {
-  padding: 80px 40px;
-  background-color: #1a1a1a;
+  padding: 60px 40px;
+  background: linear-gradient(145deg, #242424, #1a1a1a);
+  margin: 40px auto;
+  border-radius: 20px;
+  max-width: 1200px;
 }
 
 .calendar h2 {
+  color: white;
+  margin-bottom: 30px;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 300;
-  margin-bottom: 50px;
-  color: #ffffff;
 }
 
 .calendar-events {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 0 20px;
+  width: 100%; /* Added to ensure full width */
 }
 
 .event {
-  background: linear-gradient(145deg, #242424, #1a1a1a);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
   transition: all 0.3s ease;
-  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.event::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #007bff, #00e5ff);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+  min-width: 0; /* Added to prevent overflow */
 }
 
 .event:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-}
-
-.event:hover::before {
-  transform: scaleX(1);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .event .date {
-  background: linear-gradient(145deg, #1a1a1a, #242424);
   color: #007bff;
-  padding: 20px;
-  font-size: 1.1rem;
-  text-align: center;
   font-weight: 500;
-  letter-spacing: 1px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.1rem;
+  margin-bottom: 15px;
 }
 
 .event-content {
-  padding: 25px;
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.event strong {
-  color: #ffffff;
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  line-height: 1.4;
+.event-content h3 {
+  color: white;
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
 }
 
-.event .description {
-  color: #a0a0a0;
-  font-size: 1rem;
-  line-height: 1.6;
-  flex-grow: 1;
+.event-content p {
+  color: #e0e0e0;
+  margin: 5px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-/* Responsive design for calendar events */
+.event-content .location {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.no-events {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #888;
+  padding: 40px;
+  font-style: italic;
+}
+
+/* Add responsive design for smaller screens */
 @media (max-width: 1024px) {
   .calendar-events {
     grid-template-columns: repeat(2, 1fr);
@@ -671,7 +687,7 @@ section {
   }
 
   .calendar {
-    padding: 60px 20px;
+    padding: 40px 20px;
   }
 }
 
@@ -1622,4 +1638,31 @@ main {
 
 .modal-close:hover {
   background: #0056b3;
+}
+
+/* Database Section Dividers */
+.database-divider {
+  text-align: center;
+  color: #888;
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin: 40px 0 30px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.database-divider::before,
+.database-divider::after {
+  content: "";
+  height: 1px;
+  background: linear-gradient(to right, transparent, #444, transparent);
+  flex: 1;
+  margin: 0 20px;
+}
+
+.database-divider span {
+  letter-spacing: 1px;
 }

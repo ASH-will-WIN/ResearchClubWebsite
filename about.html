@@ -118,7 +118,15 @@
       <section class="calendar-section">
         <div class="calendar-container">
           <h2>Club Calendar</h2>
-          <div id="custom-calendar"></div>
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=b5c8a5a63ffa50eb4608b73bc4feb87bf8c9a18315151ac3ab436a642e2d0edf%40group.calendar.google.com&ctz=America%2FNew_York"
+            style="border: 0"
+            width="100%"
+            height="600"
+            frameborder="0"
+            scrolling="no"
+          >
+          </iframe>
         </div>
       </section>
 
@@ -159,16 +167,6 @@
       </section>
     </main>
 
-    <script src="js/calendar-api.js"></script>
-    <script src="js/calendar.js"></script>
     <script src="js/script.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const calendarContainer = document.getElementById("custom-calendar");
-        if (calendarContainer) {
-          new Calendar(calendarContainer);
-        }
-      });
-    </script>
   </body>
 </html>

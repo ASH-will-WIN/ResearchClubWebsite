@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchCalendarEvents() {
     try {
       console.log("Fetching calendar events...");
-      const events = await getCalendarEvents(null, null, 3);
+      const events = await getCalendarEvents(null, null, 3); // Get next 3 upcoming events
       console.log("Retrieved events:", events);
 
       const calendarEvents = document.querySelector(".calendar-events");
@@ -322,14 +322,15 @@ document.addEventListener("DOMContentLoaded", () => {
         calendarEvents.innerHTML = events
           .map((event) => {
             const date = new Date(event.start.dateTime || event.start.date);
-            // Format date properly
+
+            // Format date in a cleaner way
             const formattedDate = date.toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
+              weekday: "short",
+              month: "short",
               day: "numeric",
-              hour: event.start.dateTime ? "2-digit" : undefined,
+              hour: event.start.dateTime ? "numeric" : undefined,
               minute: event.start.dateTime ? "2-digit" : undefined,
+              hour12: true,
             });
 
             return `
@@ -338,15 +339,24 @@ document.addEventListener("DOMContentLoaded", () => {
                   ${formattedDate}
                 </div>
                 <div class="event-content">
-                  <strong>${event.summary}</strong>
-                  <div class="description">${event.description || ""}</div>
+                  <h3>${event.summary}</h3>
+                  ${event.description ? `<p>${event.description}</p>` : ""}
+                  ${
+                    event.location
+                      ? `<p class="location">📍 ${event.location}</p>`
+                      : ""
+                  }
                 </div>
               </div>
             `;
           })
           .join("");
       } else {
-        console.log("No events found or calendar container not present");
+        calendarEvents.innerHTML = `
+          <div class="no-events">
+            <p>No upcoming events scheduled.</p>
+          </div>
+        `;
       }
     } catch (error) {
       console.error("Error updating calendar events:", error);
